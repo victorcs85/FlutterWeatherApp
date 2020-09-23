@@ -56,12 +56,11 @@ class Forecast {
         date: date);
 
     return Forecast(
-      lastUpdated: DateTime.now(),
-      current: currentForecast,
-      latitude: json['lat'].toDouble(),
-      longitude: json['lon'].toDouble(),
-      daily: tempDaily,
-      isDayTime: isDay
-    );
+        lastUpdated: DateTime.now(),
+        current: currentForecast,
+        latitude: json['lat'].toDouble(),
+        longitude: json['lon'].toDouble(),
+        daily: tempDaily,
+        isDayTime: isDay);
   }
 }

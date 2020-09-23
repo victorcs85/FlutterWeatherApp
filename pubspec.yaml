@@ -35,6 +35,9 @@ dev_dependencies:
   http:
   provider:
   intl:
+  flutter_bloc: ^6.0.5
+  equatable: ^1.2.3
+  basic_utils: ^2.6.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

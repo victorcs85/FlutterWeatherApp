@@ -36,7 +36,7 @@ class Weather {
 
     return Weather(
         condition: mapStringToWeatherCondition(weather['main'], cloudiness),
-        description: Strings.toTitleCase(weather['description']),
+        description: toTitleCase(weather['description']),
         cloudiness: cloudiness,
         temp: daily['temp']['day'].toDouble(),
         date: DateTime.fromMicrosecondsSinceEpoch(daily['dt'] * 1000,
