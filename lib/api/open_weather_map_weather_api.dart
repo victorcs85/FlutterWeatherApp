@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:flutter_weather_app/utils/secret.dart';
+import 'package:flutter_weather_app/utils/secret_loader.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/forecast.dart';
@@ -7,7 +9,8 @@ import 'dart:developer';
 
 class OpenWeatherMapWeatherApi extends WeatherApi {
   static const endPointUrl = 'https://api.openweathermap.org/data/2.5';
-  static const apiKey = ""; //TODO
+  // static const apiKey = ""; //TODO
+  Future<Secret> secret = SecretLoader(secretPath: "secrets.json").load();
   http.Client httpClient;
 
   OpenWeatherMapWeatherApi() {
@@ -16,7 +19,7 @@ class OpenWeatherMapWeatherApi extends WeatherApi {
 
   @override
   Future<Location> getLocation(String city) async {
-    final requestUrl = '$endPointUrl/weather?q=$city&APPID=$apiKey';
+    final requestUrl = '$endPointUrl/weather?q=$city&APPID=$secret';
     final response = await this.httpClient.get(Uri.encodeFull(requestUrl));
 
     if (response.statusCode != 200) {
@@ -30,7 +33,7 @@ class OpenWeatherMapWeatherApi extends WeatherApi {
   @override
   Future<Forecast> getWeather(Location location) async {
     final requestUrl =
-        '$endPointUrl/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=hourly,minutely&APPID=$apiKey';
+        '$endPointUrl/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=hourly,minutely&APPID=$secret';
     final response = await this.httpClient.get(Uri.encodeFull(requestUrl));
 
     if (response.statusCode != 200) {
