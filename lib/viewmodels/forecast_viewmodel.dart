@@ -55,7 +55,7 @@ class ForecastViewModel with ChangeNotifier {
   ForecastService forecastService;
 
   ForecastViewModel() {
-    forecastService = ForecastService(OpenWeatherMapWeatherApi());
+    forecastService = ForecastService(weatherApi: OpenWeatherMapWeatherApi());
   }
 
   Future<Forecast> getLatestWeather(String city) async {
