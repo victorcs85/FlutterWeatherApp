@@ -10,7 +10,9 @@ class LastUpdatedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.only(top: 20.0, left: 00),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child:Column(
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(
             Icons.access_time,
             color: Colors.black45,
@@ -20,6 +22,12 @@ class LastUpdatedView extends StatelessWidget {
           Text(
               'Last updated on ${TimeOfDay.fromDateTime(this.lastUpdatedOn).format(context)}',
               style: TextStyle(fontSize: 16, color: Colors.black45))
-        ]));
+        ]),
+          SizedBox(
+            height: 20,
+          )
+          ],
+        ) 
+        );
   }
 }
