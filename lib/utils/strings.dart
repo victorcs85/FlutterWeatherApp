@@ -1,4 +1,5 @@
 String toTitleCase(String str) {
+  if(str != null) {
   return str
       .replaceAllMapped(
       RegExp(
@@ -6,4 +7,7 @@ String toTitleCase(String str) {
           (Match m) =>
       "${m[0][0].toUpperCase()}${m[0].substring(1).toLowerCase()}")
       .replaceAll(RegExp(r'(_|-)+'), ' ');
+  } else {
+    return "";
+  }
 }

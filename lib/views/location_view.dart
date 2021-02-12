@@ -17,6 +17,7 @@ class LocationView extends StatelessWidget {
     return Center(
       child: Column(
         children: [
+          if(this.city != null)
           Text('${this.city.toUpperCase()}',
               style: TextStyle(
                 fontSize: 40,

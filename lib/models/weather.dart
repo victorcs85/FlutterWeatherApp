@@ -1,3 +1,5 @@
+
+
 import 'package:flutter_weather_app/utils/strings.dart';
 
 enum WeatherCondition {
@@ -5,7 +7,7 @@ enum WeatherCondition {
   drizzle,
   rain,
   snow,
-  atmosphere,
+  atmosphere, // dust, ash, fog, sand etc.
   mist,
   fog,
   lightCloud,
@@ -39,7 +41,7 @@ class Weather {
         description: toTitleCase(weather['description']),
         cloudiness: cloudiness,
         temp: daily['temp']['day'].toDouble(),
-        date: DateTime.fromMicrosecondsSinceEpoch(daily['dt'] * 1000,
+        date: DateTime.fromMillisecondsSinceEpoch(daily['dt'] * 1000,
             isUtc: true),
         feelLikeTemp: daily['feels_like']['day'].toDouble());
   }
@@ -47,7 +49,6 @@ class Weather {
   static WeatherCondition mapStringToWeatherCondition(
       String input, int cloudiness) {
     WeatherCondition condition;
-
     switch (input) {
       case 'Thunderstorm':
         condition = WeatherCondition.thunderstorm;

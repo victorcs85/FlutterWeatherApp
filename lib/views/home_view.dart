@@ -74,9 +74,11 @@ class _HomeViewState extends State<HomeView> {
                       SizedBox(height: 20),
                       WeatherDescriptionView(
                           weatherDescription:
-                          weatherViewModel.description),
+                          weatherViewModel.description != null ? weatherViewModel.description : ""),
                       SizedBox(height: 140),
+                      if(weatherViewModel.daily != null) 
                       buildDailySummary(weatherViewModel.daily),
+                      if(weatherViewModel.lastUpdated != null)
                       LastUpdatedView(
                           lastUpdatedOn:
                           weatherViewModel.lastUpdated),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_weather_app/models/weather.dart';
 import 'package:flutter_weather_app/utils/temperature_convert.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class DailySummaryView extends StatelessWidget {
   final Weather weather;
@@ -40,39 +42,71 @@ class DailySummaryView extends StatelessWidget {
   }
 
   Widget _mapWeatherConditionToImage(WeatherCondition condition) {
-    Image image;
+    // Image image;
+    Widget image;
+    double widthHeight = 40;
     switch (condition) {
       case WeatherCondition.thunderstorm:
+        image = SvgPicture.asset(
+          'assets/images/thunder.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s thunderstorm!'
+        );
         // image = Image.asset('assets/images/thunder_storm_small.png');
         break;
       case WeatherCondition.heavyCloud:
         // image = Image.asset('assets/images/cloudy_small.png');
+        image = SvgPicture.asset(
+            'assets/images/overcast.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s cloudy!'
+        );
         break;
       case WeatherCondition.lightCloud:
         // image = Image.asset('assets/images/light_cloud_small.png');
+        image = SvgPicture.asset(
+            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s light cloud!'
+        );
         break;
       case WeatherCondition.drizzle:
       case WeatherCondition.mist:
         // image = Image.asset('assets/images/drizzle_small.png');
+      image = SvgPicture.asset(
+          'assets/images/mist.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s mist!'
+      );
         break;
       case WeatherCondition.clear:
         // image = Image.asset('assets/images/clear_small.png');
+        image = SvgPicture.asset(
+            'assets/images/sunny_.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s clear!'
+        );
         break;
       case WeatherCondition.fog:
         // image = Image.asset('assets/images/fog_small.png');
+        image = SvgPicture.asset(
+            'assets/images/fog.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s fog!'
+        );
         break;
       case WeatherCondition.snow:
         // image = Image.asset('assets/images/snow_small.png');
+        image = SvgPicture.asset(
+            'assets/images/snow.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s snow!'
+        );
         break;
       case WeatherCondition.rain:
         // image = Image.asset('assets/images/rain_small.png');
+        image = SvgPicture.asset(
+            'assets/images/heavy_rain.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s rain!'
+        );
         break;
       case WeatherCondition.atmosphere:
         // image = Image.asset('assets/images/atmosphere_small.png');
+        image = SvgPicture.asset(
+            'assets/images/pressure.svg', width: widthHeight, height: widthHeight
+        );
         break;
 
       default:
         // image = Image.asset('assets/images/light_cloud_small.png');
+        image = SvgPicture.asset(
+            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s light cloud!'
+        );
     }
 
     return Padding(padding: const EdgeInsets.only(top: 5), child: image);

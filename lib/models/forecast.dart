@@ -34,7 +34,7 @@ class Forecast {
     bool isDay = date.isAfter(sunrise) && date.isBefore(sunset);
 
     // get the forecast for the next 3 days, excluding the current day
-    bool hasDaily = json['dayly'] != null;
+    bool hasDaily = json['daily'] != null;
     var tempDaily = [];
     if (hasDaily) {
       List items = json['daily'];
@@ -46,18 +46,18 @@ class Forecast {
           .toList();
     }
 
-    var currentForecast = Weather(
+    var currentForcast = Weather(
         cloudiness: int.parse(json['current']['clouds'].toString()),
         temp: json['current']['temp'].toDouble(),
         condition: Weather.mapStringToWeatherCondition(
             weather['main'], int.parse(json['current']['clouds'].toString())),
         description: weather['description'],
-        feelLikeTemp: json['current']['feel_like'],
+        feelLikeTemp: json['current']['feels_like'],
         date: date);
 
     return Forecast(
         lastUpdated: DateTime.now(),
-        current: currentForecast,
+        current: currentForcast,
         latitude: json['lat'].toDouble(),
         longitude: json['lon'].toDouble(),
         daily: tempDaily,
