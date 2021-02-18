@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_app/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_weather_app/viewmodels/city_entry_viewmodel.dart';
 
@@ -64,7 +65,9 @@ class _CityEntryState extends State<CityEntryView> {
                     child: TextField(
                         controller: cityEditController,
                         decoration:
-                            InputDecoration.collapsed(hintText: "Enter City"),
+                            InputDecoration.collapsed(hintText: 
+                            AppLocalizations.of(context).translate('city_entry_view_enter')
+                            ),
                         onSubmitted: (String city) =>
                             {model.refreshWeather(city, context)})),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_app/app_localizations.dart';
 
 class LastUpdatedView extends StatelessWidget {
   final DateTime lastUpdatedOn;
@@ -20,7 +21,8 @@ class LastUpdatedView extends StatelessWidget {
           ),
           SizedBox(width: 10),
           Text(
-              'Last updated on ${TimeOfDay.fromDateTime(this.lastUpdatedOn).format(context)}',
+            AppLocalizations.of(context).translate('last_updated_view_last_updated') + 
+              '${TimeOfDay.fromDateTime(this.lastUpdatedOn).format(context)}',
               style: TextStyle(fontSize: 16, color: Colors.black45))
         ]),
           SizedBox(

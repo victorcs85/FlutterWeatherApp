@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_app/app_localizations.dart';
 import 'package:flutter_weather_app/models/weather.dart';
 import 'package:flutter_weather_app/utils/gradient_container.dart';
 import 'package:flutter_weather_app/views/last_updated_view.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_weather_app/viewmodels/city_entry_viewmodel.dart';
 import 'package:flutter_weather_app/viewmodels/forecast_viewmodel.dart';
 
 import 'package:flutter_weather_app/views/weather_description_view.dart';
-import 'package:flutter_weather_app/views/weather_summary.dart';
+import 'package:flutter_weather_app/views/weather_summary_view.dart';
 
 import 'city_entry_view.dart';
 import 'daily_summary_view.dart';
@@ -53,10 +54,10 @@ class _HomeViewState extends State<HomeView> {
                   children: <Widget>[
                     CityEntryView(),
                     weatherViewModel.isRequestPending
-                        ? buildBusyIndicator()
+                        ? buildBusyIndicator(context)
                         : weatherViewModel.isRequestError
                         ? Center(
-                        child: Text('Ooops...something went wrong',
+                        child: Text(AppLocalizations.of(context).translate('home_view_ops'),
                             style: TextStyle(
                                 fontSize: 21, color: Colors.white)))
                         : Column(children: [
@@ -87,14 +88,14 @@ class _HomeViewState extends State<HomeView> {
                 ))));
   }
 
-  Widget buildBusyIndicator() {
+  Widget buildBusyIndicator(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       CircularProgressIndicator(
           valueColor: new AlwaysStoppedAnimation<Color>(Colors.white)),
       SizedBox(
         height: 20,
       ),
-      Text('Please Wait...',
+      Text(AppLocalizations.of(context).translate('home_view_wait'),
           style: TextStyle(
             fontSize: 18,
             color: Colors.white,

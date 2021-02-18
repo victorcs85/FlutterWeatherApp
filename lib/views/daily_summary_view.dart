@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weather_app/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_weather_app/models/weather.dart';
 import 'package:flutter_weather_app/utils/temperature_convert.dart';
@@ -36,63 +37,71 @@ class DailySummaryView extends StatelessWidget {
               padding: EdgeInsets.only(left: 5),
               child: Container(
                   alignment: Alignment.center,
-                  child: _mapWeatherConditionToImage(this.weather.condition)))
+                  child: _mapWeatherConditionToImage(this.weather.condition, context)))
         ],
         ));
   }
 
-  Widget _mapWeatherConditionToImage(WeatherCondition condition) {
+  Widget _mapWeatherConditionToImage(WeatherCondition condition, BuildContext context) {
     // Image image;
     Widget image;
     double widthHeight = 40;
     switch (condition) {
       case WeatherCondition.thunderstorm:
         image = SvgPicture.asset(
-          'assets/images/thunder.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s thunderstorm!'
+          'assets/images/thunder.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+          AppLocalizations.of(context).translate('daily_summary_view_thunder')
         );
         // image = Image.asset('assets/images/thunder_storm_small.png');
         break;
       case WeatherCondition.heavyCloud:
         // image = Image.asset('assets/images/cloudy_small.png');
         image = SvgPicture.asset(
-            'assets/images/overcast.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s cloudy!'
+            'assets/images/overcast.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_cloudy')
         );
         break;
       case WeatherCondition.lightCloud:
         // image = Image.asset('assets/images/light_cloud_small.png');
         image = SvgPicture.asset(
-            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s light cloud!'
+            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_light_cloud')
         );
         break;
       case WeatherCondition.drizzle:
       case WeatherCondition.mist:
         // image = Image.asset('assets/images/drizzle_small.png');
       image = SvgPicture.asset(
-          'assets/images/mist.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s mist!'
+          'assets/images/mist.svg', width: widthHeight, height: widthHeight, semanticsLabel:
+          AppLocalizations.of(context).translate('daily_summary_view_mist')
       );
         break;
       case WeatherCondition.clear:
         // image = Image.asset('assets/images/clear_small.png');
         image = SvgPicture.asset(
-            'assets/images/sunny_.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s clear!'
+            'assets/images/sunny_.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_clear')
         );
         break;
       case WeatherCondition.fog:
         // image = Image.asset('assets/images/fog_small.png');
         image = SvgPicture.asset(
-            'assets/images/fog.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s fog!'
+            'assets/images/fog.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_fog')
         );
         break;
       case WeatherCondition.snow:
         // image = Image.asset('assets/images/snow_small.png');
         image = SvgPicture.asset(
-            'assets/images/snow.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s snow!'
+            'assets/images/snow.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_snow')
         );
         break;
       case WeatherCondition.rain:
         // image = Image.asset('assets/images/rain_small.png');
         image = SvgPicture.asset(
-            'assets/images/heavy_rain.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s rain!'
+            'assets/images/heavy_rain.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_rain')
         );
         break;
       case WeatherCondition.atmosphere:
@@ -105,7 +114,8 @@ class DailySummaryView extends StatelessWidget {
       default:
         // image = Image.asset('assets/images/light_cloud_small.png');
         image = SvgPicture.asset(
-            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 'It`s light cloud!'
+            'assets/images/cloudy.svg', width: widthHeight, height: widthHeight, semanticsLabel: 
+            AppLocalizations.of(context).translate('daily_summary_view_light_cloud')
         );
     }
 
