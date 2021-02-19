@@ -53,13 +53,15 @@ class _HomeViewState extends State<HomeView> {
                 child: ListView(
                   children: <Widget>[
                     CityEntryView(),
+                    weatherViewModel.city == null ?
+                      buildEmptyCityView(context)
+                    :
                     weatherViewModel.isRequestPending
                         ? buildBusyIndicator(context)
                         : weatherViewModel.isRequestError
                         ? Center(
                         child: Text(AppLocalizations.of(context).translate('home_view_ops'),
-                            style: TextStyle(
-                                fontSize: 21, color: Colors.white)))
+                            style: buildHomeTextStyle()))
                         : Column(children: [
                       LocationView(
                         longitude: weatherViewModel.longitude,
@@ -112,6 +114,21 @@ class _HomeViewState extends State<HomeView> {
           weather: item,
         ))
             .toList());
+  }
+
+  Widget buildEmptyCityView(BuildContext context) {
+    return Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+              Text(AppLocalizations.of(context).translate('home_view_empty_city'),
+                          style: buildHomeTextStyle(),
+                          )]),  
+            );
+  }
+
+  TextStyle buildHomeTextStyle() {
+    return TextStyle(fontSize: 21, color: Colors.white);
   }
 
   Future<void> refreshWeather(

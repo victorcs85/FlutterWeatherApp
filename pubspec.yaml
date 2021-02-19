@@ -61,7 +61,8 @@ flutter:
   assets:
     - assets/images/
     - secrets.json
-    - lang/en.json
+    - lang/en_US.json
+    - lang/es_ES.json
     - lang/pt_BR.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
