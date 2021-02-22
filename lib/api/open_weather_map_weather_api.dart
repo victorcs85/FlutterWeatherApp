@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_weather_app/utils/secret.dart';
 import 'package:flutter_weather_app/utils/secret_loader.dart';
 import 'package:http/http.dart' as http;
@@ -17,10 +18,10 @@ class OpenWeatherMapWeatherApi extends WeatherApi {
 
   @override
   Future<Location> getLocation(String city) async {
-
+    String defaultLocale = Platform.localeName;
     Secret secret = await secretFuture;
 
-    final requestUrl = '$endPointUrl/weather?q=$city&APPID=${secret.apikey}';
+    final requestUrl = '$endPointUrl/weather?q=$city&lang=$defaultLocale&APPID=${secret.apikey}';
     final response = await this.httpClient.get(Uri.encodeFull(requestUrl));
 
     if (response.statusCode != 200) {
@@ -33,11 +34,11 @@ class OpenWeatherMapWeatherApi extends WeatherApi {
 
   @override
   Future<Forecast> getWeather(Location location) async {
-
+    String defaultLocale = Platform.localeName;
     Secret secret = await secretFuture;
 
     final requestUrl =
-        '$endPointUrl/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=hourly,minutely&APPID=${secret.apikey}';
+        '$endPointUrl/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude=hourly,minutely&lang=$defaultLocale&APPID=${secret.apikey}';
     final response = await this.httpClient.get(Uri.encodeFull(requestUrl));
 
     if (response.statusCode != 200) {

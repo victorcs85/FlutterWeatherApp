@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather_app/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_weather_app/viewmodels/city_entry_viewmodel.dart';
+import 'package:flutter_weather_app/utils/shared_prefs_manager.dart';
 
 class CityEntryView extends StatefulWidget {
   @override
@@ -16,6 +17,8 @@ class _CityEntryState extends State<CityEntryView> {
     super.initState();
 
     cityEditController = new TextEditingController();
+
+    restoreCityFromPrefs(cityEditController) ;
 
     // sync the current value in text field to
     // the view model
@@ -45,7 +48,7 @@ class _CityEntryState extends State<CityEntryView> {
                   color: Colors.black.withOpacity(0.3),
                   spreadRadius: 3,
                   blurRadius: 5,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: Offset(0, 3), 
                 ),
               ],
             ),
@@ -72,5 +75,9 @@ class _CityEntryState extends State<CityEntryView> {
                             {model.refreshWeather(city, context)})),
               ],
             )));
+  }
+
+  void restoreCityFromPrefs(TextEditingController cityEditController) async {
+    cityEditController.text = getCityFromSharedPrefs();
   }
 }

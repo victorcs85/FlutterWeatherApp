@@ -21,11 +21,20 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  String city = "";
+
   @override
   void initState() {
     super.initState();
 
     onStart();
+  }
+
+
+  loadCityFromPrefs() async {
+    setState(() {
+      
+    });
   }
 
   Future<void> onStart() async {
@@ -117,13 +126,14 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget buildEmptyCityView(BuildContext context) {
-    return Center(child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+    return Container(padding: EdgeInsets.all(40.0),
+        child: Center(child:  
               Text(AppLocalizations.of(context).translate('home_view_empty_city'),
+                textDirection: TextDirection.ltr,
+                textAlign: TextAlign.center,
                           style: buildHomeTextStyle(),
-                          )]),  
+                          ),  
+            ), height: 200,
             );
   }
 

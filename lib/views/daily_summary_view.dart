@@ -15,8 +15,9 @@ class DailySummaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = Localizations.localeOf(context);
     final dayOfWeek = toBeginningOfSentenceCase(
-      DateFormat('EEE').format(this.weather.date));
+      DateFormat('EEE', currentLocale.toString()).format(this.weather.date));
 
       return Padding(
         padding: EdgeInsets.all(15),
