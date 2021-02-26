@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_weather_app/viewmodels/forecast_viewmodel.dart';
 
 class CityEntryViewModel with ChangeNotifier {
+  final _sharedPreferences = SharedPrefsManager();
+
   String _city;
 
   CityEntryViewModel();
@@ -19,7 +21,7 @@ class CityEntryViewModel with ChangeNotifier {
 
   void updateCity(String newCity) async {
     _city = newCity;
-    setCityToSharedPrefs(_city);
+    _sharedPreferences.setCityToSharedPrefs(_city);
   }
 
   

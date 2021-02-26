@@ -10,6 +10,8 @@ class CityEntryView extends StatefulWidget {
 }
 
 class _CityEntryState extends State<CityEntryView> {
+  final _sharedPreferences = SharedPrefsManager();
+
   TextEditingController cityEditController;
 
   @override
@@ -18,14 +20,13 @@ class _CityEntryState extends State<CityEntryView> {
 
     cityEditController = new TextEditingController();
 
-    restoreCityFromPrefs(cityEditController) ;
-
     // sync the current value in text field to
     // the view model
     cityEditController.addListener(() {
       Provider.of<CityEntryViewModel>(this.context, listen: false)
           .updateCity(cityEditController.text);
     });
+    restoreCityFromPrefs(cityEditController);
   }
 
   @override
@@ -78,6 +79,12 @@ class _CityEntryState extends State<CityEntryView> {
   }
 
   void restoreCityFromPrefs(TextEditingController cityEditController) async {
-    cityEditController.text = getCityFromSharedPrefs();
+    final restoredCityData = await _sharedPreferences.getCityFromSharedPrefs();
+    if(cityEditController.text != "") {
+      cityEditController.text = restoredCityData;  
+      cityEditController.notifyListeners();    
+      Provider.of<CityEntryViewModel>(this.context, listen: false)
+        .refreshWeather(cityEditController.text, context);
+    }
   }
 }
