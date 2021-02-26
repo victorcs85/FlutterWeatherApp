@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_weather_app/utils/secret.dart';
 import 'package:flutter_weather_app/utils/secret_loader.dart';
+import 'package:flutter_weather_app/utils/shared_prefs_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_weather_app/api/weather_api.dart';
 import 'package:flutter_weather_app/models/forecast.dart';
@@ -25,6 +26,8 @@ class OpenWeatherMapWeatherApi extends WeatherApi {
     final response = await this.httpClient.get(Uri.encodeFull(requestUrl));
 
     if (response.statusCode != 200) {
+      final _sharedPreferences = SharedPrefsManager();
+      _sharedPreferences.clearCityFromSharedPrefs();
       throw Exception(
           'An error retrieving location for city $city: ${response.statusCode}');
     }

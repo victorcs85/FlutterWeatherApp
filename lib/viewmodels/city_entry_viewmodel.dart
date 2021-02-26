@@ -21,7 +21,9 @@ class CityEntryViewModel with ChangeNotifier {
 
   void updateCity(String newCity) async {
     _city = newCity;
-    _sharedPreferences.setCityToSharedPrefs(_city);
+    if(newCity.trim() != "") {
+      _sharedPreferences.setCityToSharedPrefs(_city);
+    }
   }
 
   

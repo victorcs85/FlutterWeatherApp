@@ -62,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                 child: ListView(
                   children: <Widget>[
                     CityEntryView(),
-                    weatherViewModel.city == null ?
+                    (getCity(context) == "" || getCity(context) == null) ?
                       buildEmptyCityView(context)
                     :
                     weatherViewModel.isRequestPending
@@ -146,6 +146,11 @@ class _HomeViewState extends State<HomeView> {
     // get the current city
     String city = Provider.of<CityEntryViewModel>(context, listen: false).city;
     return weatherVM.getLatestWeather(city);
+  }
+
+  String getCity(BuildContext context) {
+    String city = Provider.of<CityEntryViewModel>(context, listen: false).city;
+    return city;
   }
 
   GradientContainer _buildGradientContainer(

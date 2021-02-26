@@ -19,6 +19,7 @@ class _CityEntryState extends State<CityEntryView> {
     super.initState();
 
     cityEditController = new TextEditingController();
+    restoreCityFromPrefs(cityEditController);
 
     // sync the current value in text field to
     // the view model
@@ -26,7 +27,6 @@ class _CityEntryState extends State<CityEntryView> {
       Provider.of<CityEntryViewModel>(this.context, listen: false)
           .updateCity(cityEditController.text);
     });
-    restoreCityFromPrefs(cityEditController);
   }
 
   @override
@@ -80,9 +80,9 @@ class _CityEntryState extends State<CityEntryView> {
 
   void restoreCityFromPrefs(TextEditingController cityEditController) async {
     final restoredCityData = await _sharedPreferences.getCityFromSharedPrefs();
+    cityEditController.text = restoredCityData;  
+    cityEditController.notifyListeners();    
     if(cityEditController.text != "") {
-      cityEditController.text = restoredCityData;  
-      cityEditController.notifyListeners();    
       Provider.of<CityEntryViewModel>(this.context, listen: false)
         .refreshWeather(cityEditController.text, context);
     }
